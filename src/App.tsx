@@ -19,7 +19,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="system" storageKey="recipe-app-theme">
+    <ThemeProvider defaultTheme="light" storageKey="recipe-app-theme">
       <AuthProvider>
         <FavoritesProvider>
           <TooltipProvider>
