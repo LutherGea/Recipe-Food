@@ -11,16 +11,16 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({ onSearch, loading = false }) => {
   const [query, setQuery] = useState('');
-  const [diet, setDiet] = useState<string>('');
-  const [type, setType] = useState<string>('');
+  const [diet, setDiet] = useState<string>('all');
+  const [type, setType] = useState<string>('all');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(query, diet || undefined, type || undefined);
+    onSearch(query, diet === 'all' ? undefined : diet, type === 'all' ? undefined : type);
   };
 
   const dietOptions = [
-    { value: '', label: 'All Diets' },
+    { value: 'all', label: 'All Diets' },
     { value: 'vegetarian', label: 'Vegetarian' },
     { value: 'vegan', label: 'Vegan' },
     { value: 'gluten-free', label: 'Gluten Free' },
@@ -30,7 +30,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, loading = false }) => {
   ];
 
   const typeOptions = [
-    { value: '', label: 'All Types' },
+    { value: 'all', label: 'All Types' },
     { value: 'main course', label: 'Main Course' },
     { value: 'breakfast', label: 'Breakfast' },
     { value: 'lunch', label: 'Lunch' },
@@ -103,13 +103,13 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, loading = false }) => {
           </div>
         </div>
 
-        {(query || diet || type) && (
+        {(query || (diet && diet !== 'all') || (type && type !== 'all')) && (
           <div className="flex items-center justify-between text-sm text-muted-foreground">
             <span>
               Filters active: {[
                 query && `"${query}"`,
-                diet && dietOptions.find(d => d.value === diet)?.label,
-                type && typeOptions.find(t => t.value === type)?.label
+                diet && diet !== 'all' && dietOptions.find(d => d.value === diet)?.label,
+                type && type !== 'all' && typeOptions.find(t => t.value === type)?.label
               ].filter(Boolean).join(', ')}
             </span>
             <Button
@@ -118,8 +118,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, loading = false }) => {
               size="sm"
               onClick={() => {
                 setQuery('');
-                setDiet('');
-                setType('');
+                setDiet('all');
+                setType('all');
                 onSearch('');
               }}
             >
