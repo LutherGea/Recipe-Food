@@ -1,73 +1,81 @@
-# Welcome to your Lovable project
+1. Deskripsi Proyek
 
-## Project info
+    RecipePal dibuat untuk memenuhi tugas UAS mata kuliah *Kerangka Kerja Pengembangan Antarmuka Website*. Aplikasi ini menampilkan kumpulan resep makanan dari API atau dummy data lokal, memungkinkan pengguna untuk menandai resep favorit, memberikan rating, dan menulis catatan pribadi.
 
-**URL**: https://lovable.dev/projects/ccf45c70-5c2d-423d-9424-50bbcdd2dc84
 
-## How can I edit this code?
+2. API yang Digunakan
 
-There are several ways of editing your application.
+    "Spoonacular API"
+    Endpoint yang digunakan:  
+    - `https://api.spoonacular.com/recipes/complexSearch`
+    - `https://api.spoonacular.com/recipes/{id}/information`  
+    Fallback ke dummy data akan dilakukan jika API gagal.
 
-**Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ccf45c70-5c2d-423d-9424-50bbcdd2dc84) and start prompting.
+3. Fitur-Fitur Utama
 
-Changes made via Lovable will be committed automatically to this repo.
+    1. Pencarian resep
+    2. Jelajahi resep berdasarkan kategori
+    3. Tambah ke favorit
+    4. Catatan pribadi untuk tiap resep
+    5. Beri rating resep
+    6. Autentikasi login (dummy)
+    7. Data favorit disimpan di LocalStorage
+    8. Dukungan tema gelap/terang
+    9. Notifikasi interaktif dengan toast
 
-**Use your preferred IDE**
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+4. Struktur Halaman & Routing
 
-Follow these steps:
+        recipe-pal-frontend/
+    ├── public/
+    │   ├── favicon.ico
+    │   ├── placeholder.svg
+    │   ├── robots.txt
+    │
+    ├── src/
+    │   ├── components/
+    │   │   ├── Navbar.tsx                 # Komponen navigasi utama
+    │   │   └── ui/                        # Komponen dari shadcn/ui
+    │   │       └── ...                   
+    │
+    │   ├── contexts/
+    │   │   ├── AuthContext.tsx           # Konteks autentikasi global
+    │   │   └── FavoritesContext.tsx      # Konteks favorit global
+    │
+    │   ├── hooks/
+    │   │   └── use-toast.ts              # Custom hook untuk toast notifikasi
+    │
+    │   ├── pages/                        # Semua halaman utama
+    │   │   ├── Home.tsx                  # Beranda resep
+    │   │   ├── Search.tsx                # Halaman pencarian resep
+    │   │   ├── Categories.tsx            # Halaman kategori resep
+    │   │   ├── RecipeDetail.tsx          # Halaman detail resep
+    │   │   ├── Favorites.tsx             # Halaman daftar favorit
+    │   │   ├── Login.tsx                 # Halaman login (dummy)
+    │   │   └── NotFound.tsx              # Halaman 404 jika route tidak ditemukan
+    │
+    │   ├── services/
+    │   │   └── api.ts                    # Fungsi pemanggilan API / dummy fetch
+    │
+    │   ├── App.tsx                       # Entry point utama React + Routing
+    │   ├── main.tsx                      # Root rendering React DOM
+    │   ├── index.css                     # Styling global
+    │   └── vite-env.d.ts                 # Deklarasi lingkungan Vite
+    │
+    ├── .env                              # Environment variables (API Key, dll)
+    ├── .gitignore                        # File dan folder yang diabaikan Git
+    ├── package.json                      # Dependency dan script npm
+    ├── tsconfig.json                     # Konfigurasi TypeScript
+    ├── tailwind.config.ts                # Konfigurasi TailwindCSS
+    ├── vite.config.ts                    # Konfigurasi build tool Vite
+    └── README.md                         # Dokumentasi proyek
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+5. Cara Menjalankan Secara Lokal
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/ccf45c70-5c2d-423d-9424-50bbcdd2dc84) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+    1. Clone repository dari github
+    2. Install dependency dengan mengetik "npm install"
+    3. Jalankan development server "npm run dev"
+    4. Buka di browser (Chrome/Microsoft Edge) dengan alamat sesuai dengan localhost yanbg tertera

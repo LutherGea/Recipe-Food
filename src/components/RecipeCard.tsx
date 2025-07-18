@@ -21,7 +21,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     if (!isAuthenticated) {
       toast({
         title: "Perlu Login",
@@ -34,19 +34,20 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
     if (favorite) {
       removeFromFavorites(recipe.id);
       toast({
-        title: "Dihapus dari favorit",
-        description: `${recipe.title} telah dihapus dari favorit Anda`
+        title: "Dihapus dari Favorit",
+        description: `"${recipe.title}" telah dihapus dari favorit Anda`
       });
     } else {
       addToFavorites(recipe);
       toast({
-        title: "Ditambahkan ke favorit",
-        description: `${recipe.title} telah ditambahkan ke favorit Anda`
+        title: "Ditambahkan ke Favorit",
+        description: `"${recipe.title}" telah ditambahkan ke favorit Anda`
       });
     }
   };
 
-  const stripHtml = (html: string) => {
+  const stripHtml = (html?: string) => {
+    if (!html) return '';
     const tmp = document.createElement("div");
     tmp.innerHTML = html;
     return tmp.textContent || tmp.innerText || "";
@@ -57,7 +58,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
       <Link to={`/recipe/${recipe.id}`}>
         <div className="relative overflow-hidden">
           <img
-            src={recipe.image}
+            src={recipe.image || 'https://images.unsplash.com/photo-1546554137-f86b9593a222?w=400&h=300&fit=crop'}
             alt={recipe.title}
             className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
             onError={(e) => {
@@ -65,22 +66,22 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
               target.src = 'https://images.unsplash.com/photo-1546554137-f86b9593a222?w=400&h=300&fit=crop';
             }}
           />
-          
+
           {/* Favorite Button */}
           <Button
             size="sm"
             variant="secondary"
-            className="absolute top-2 right-2 bg-white/90 hover:bg-white shadow-md"
+            className="absolute top-2 right-2 bg-white/90 hover:bg-white shadow-md z-10"
             onClick={handleFavoriteClick}
           >
-            <Heart 
-              className={`h-4 w-4 ${favorite ? 'fill-red-500 text-red-500' : 'text-gray-600'}`} 
+            <Heart
+              className={`h-4 w-4 ${favorite ? 'fill-red-500 text-red-500' : 'text-gray-600'}`}
             />
           </Button>
 
           {/* Rating Badge */}
           {recipe.rating !== undefined && recipe.rating > 0 && (
-            <Badge className="absolute top-2 left-2 bg-warning text-warning-foreground">
+            <Badge className="absolute top-2 left-2 bg-yellow-400 text-yellow-900">
               <Star className="h-3 w-3 mr-1 fill-current" />
               {recipe.rating}
             </Badge>
@@ -94,7 +95,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
             {recipe.title}
           </h3>
         </Link>
-        
+
         {recipe.summary && (
           <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
             {stripHtml(recipe.summary)}

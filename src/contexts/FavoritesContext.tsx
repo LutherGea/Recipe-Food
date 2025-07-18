@@ -8,7 +8,12 @@ export interface Recipe {
   servings?: number;
   summary?: string;
   instructions?: string;
-  extendedIngredients?: any[];
+  extendedIngredients?: {
+    id?: number;
+    name: string;
+    amount: number;
+    unit: string;
+  }[];
   rating?: number;
   notes?: string;
   dateAdded?: string;
@@ -41,10 +46,16 @@ export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({ children }
   const [favorites, setFavorites] = useState<Recipe[]>([]);
 
   useEffect(() => {
-    // Load favorites from localStorage
     const storedFavorites = localStorage.getItem('favorites');
     if (storedFavorites) {
-      setFavorites(JSON.parse(storedFavorites));
+      try {
+        const parsed = JSON.parse(storedFavorites);
+        if (Array.isArray(parsed)) {
+          setFavorites(parsed);
+        }
+      } catch (error) {
+        console.error("Failed to parse favorites from localStorage:", error);
+      }
     }
   }, []);
 
@@ -54,19 +65,21 @@ export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({ children }
   };
 
   const addToFavorites = (recipe: Recipe) => {
-    const newFavorite = {
+    if (favorites.some(fav => fav.id === recipe.id)) return;
+
+    const newFavorite: Recipe = {
       ...recipe,
       rating: 0,
       notes: '',
-      dateAdded: new Date().toISOString()
+      dateAdded: new Date().toISOString(),
+      extendedIngredients: recipe.extendedIngredients ?? [],
     };
-    const newFavorites = [...favorites, newFavorite];
-    saveFavorites(newFavorites);
+    saveFavorites([...favorites, newFavorite]);
   };
 
   const removeFromFavorites = (id: number) => {
-    const newFavorites = favorites.filter(recipe => recipe.id !== id);
-    saveFavorites(newFavorites);
+    const updated = favorites.filter(recipe => recipe.id !== id);
+    saveFavorites(updated);
   };
 
   const isFavorite = (id: number) => {
@@ -74,30 +87,30 @@ export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({ children }
   };
 
   const updateFavoriteNotes = (id: number, notes: string) => {
-    const newFavorites = favorites.map(recipe =>
+    const updated = favorites.map(recipe =>
       recipe.id === id ? { ...recipe, notes } : recipe
     );
-    saveFavorites(newFavorites);
+    saveFavorites(updated);
   };
 
   const updateFavoriteRating = (id: number, rating: number) => {
-    const newFavorites = favorites.map(recipe =>
+    const updated = favorites.map(recipe =>
       recipe.id === id ? { ...recipe, rating } : recipe
     );
-    saveFavorites(newFavorites);
-  };
-
-  const value = {
-    favorites,
-    addToFavorites,
-    removeFromFavorites,
-    isFavorite,
-    updateFavoriteNotes,
-    updateFavoriteRating
+    saveFavorites(updated);
   };
 
   return (
-    <FavoritesContext.Provider value={value}>
+    <FavoritesContext.Provider
+      value={{
+        favorites,
+        addToFavorites,
+        removeFromFavorites,
+        isFavorite,
+        updateFavoriteNotes,
+        updateFavoriteRating,
+      }}
+    >
       {children}
     </FavoritesContext.Provider>
   );
