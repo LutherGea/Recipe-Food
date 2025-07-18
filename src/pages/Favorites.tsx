@@ -24,16 +24,16 @@ const Favorites: React.FC = () => {
           <div className="bg-destructive/10 rounded-full p-6 w-24 h-24 mx-auto mb-6 flex items-center justify-center">
             <Heart className="h-12 w-12 text-destructive" />
           </div>
-          <h2 className="text-2xl font-semibold mb-4">Login Required</h2>
+          <h2 className="text-2xl font-semibold mb-4">Perlu Login</h2>
           <p className="text-muted-foreground mb-6">
-            You need to be logged in to view your favorite recipes.
+            Anda perlu login untuk melihat resep favorit Anda.
           </p>
           <div className="flex gap-4 justify-center">
             <Link to="/login">
-              <Button>Login Now</Button>
+              <Button>Login Sekarang</Button>
             </Link>
             <Link to="/">
-              <Button variant="outline">Browse Recipes</Button>
+              <Button variant="outline">Jelajahi Resep</Button>
             </Link>
           </div>
         </div>
@@ -93,19 +93,19 @@ const Favorites: React.FC = () => {
             <div className="bg-muted rounded-full p-8 w-32 h-32 mx-auto mb-6 flex items-center justify-center">
               <Heart className="h-16 w-16 text-muted-foreground" />
             </div>
-            <h2 className="text-2xl font-semibold mb-4">No favorite recipes yet</h2>
+            <h2 className="text-2xl font-semibold mb-4">Belum ada resep favorit</h2>
             <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-              Start building your recipe collection by clicking the heart icon on recipes you love.
+              Mulai membangun koleksi resep Anda dengan mengklik ikon hati pada resep yang Anda sukai.
             </p>
             <div className="flex gap-4 justify-center">
               <Link to="/">
                 <Button size="lg">
-                  Discover Recipes
+                  Temukan Resep
                 </Button>
               </Link>
               <Link to="/search">
                 <Button size="lg" variant="outline">
-                  Search Recipes
+                  Cari Resep
                 </Button>
               </Link>
             </div>
@@ -121,7 +121,7 @@ const Favorites: React.FC = () => {
                       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                       <Input
                         type="text"
-                        placeholder="Search your favorites..."
+                        placeholder="Cari favorit Anda..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="pl-10"
@@ -133,12 +133,12 @@ const Favorites: React.FC = () => {
                     <Select value={sortBy} onValueChange={setSortBy}>
                       <SelectTrigger>
                         <SortAsc className="h-4 w-4 mr-2" />
-                        <SelectValue placeholder="Sort by" />
+                        <SelectValue placeholder="Urutkan berdasarkan" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="recent">Recently Added</SelectItem>
-                        <SelectItem value="oldest">Oldest First</SelectItem>
-                        <SelectItem value="rating">Highest Rated</SelectItem>
+                        <SelectItem value="recent">Baru Ditambahkan</SelectItem>
+                        <SelectItem value="oldest">Terlama Dulu</SelectItem>
+                        <SelectItem value="rating">Rating Tertinggi</SelectItem>
                         <SelectItem value="title">A-Z</SelectItem>
                       </SelectContent>
                     </Select>
@@ -148,15 +148,15 @@ const Favorites: React.FC = () => {
                     <Select value={filterByRating} onValueChange={setFilterByRating}>
                       <SelectTrigger>
                         <Filter className="h-4 w-4 mr-2" />
-                        <SelectValue placeholder="Filter by rating" />
+                        <SelectValue placeholder="Filter berdasarkan rating" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="all">All Ratings</SelectItem>
-                        <SelectItem value="5">5 Stars Only</SelectItem>
-                        <SelectItem value="4">4+ Stars</SelectItem>
-                        <SelectItem value="3">3+ Stars</SelectItem>
-                        <SelectItem value="2">2+ Stars</SelectItem>
-                        <SelectItem value="1">1+ Stars</SelectItem>
+                        <SelectItem value="all">Semua Rating</SelectItem>
+                        <SelectItem value="5">5 Bintang Saja</SelectItem>
+                        <SelectItem value="4">4+ Bintang</SelectItem>
+                        <SelectItem value="3">3+ Bintang</SelectItem>
+                        <SelectItem value="2">2+ Bintang</SelectItem>
+                        <SelectItem value="1">1+ Bintang</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -165,7 +165,7 @@ const Favorites: React.FC = () => {
                 {/* Search Summary */}
                 <div className="flex items-center justify-between mt-4 text-sm text-muted-foreground">
                   <span>
-                    Showing {filteredFavorites.length} of {favorites.length} favorite recipe{favorites.length !== 1 ? 's' : ''}
+                    Menampilkan {filteredFavorites.length} dari {favorites.length} resep favorit{favorites.length !== 1 ? '' : ''}
                   </span>
                   
                   {(searchQuery || filterByRating !== 'all' || sortBy !== 'recent') && (
@@ -178,7 +178,7 @@ const Favorites: React.FC = () => {
                         setSortBy('recent');
                       }}
                     >
-                      Clear Filters
+                      Hapus Filter
                     </Button>
                   )}
                 </div>
@@ -190,7 +190,7 @@ const Favorites: React.FC = () => {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-muted-foreground">
-                    Total Favorites
+                    Total Favorit
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -201,7 +201,7 @@ const Favorites: React.FC = () => {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-muted-foreground">
-                    Average Rating
+                    Rating Rata-rata
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -219,7 +219,7 @@ const Favorites: React.FC = () => {
               <Card>
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-muted-foreground">
-                    With Notes
+                    Dengan Catatan
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -242,13 +242,13 @@ const Favorites: React.FC = () => {
                       {recipe.dateAdded && (
                         <div className="flex items-center space-x-1">
                           <Calendar className="h-3 w-3" />
-                          <span>Added {new Date(recipe.dateAdded).toLocaleDateString()}</span>
+                          <span>Ditambahkan {new Date(recipe.dateAdded).toLocaleDateString()}</span>
                         </div>
                       )}
                       
                       {recipe.notes && recipe.notes.trim() && (
                         <div className="bg-muted/50 rounded p-2 text-xs">
-                          <strong>Your notes:</strong> {recipe.notes.slice(0, 100)}
+                          <strong>Catatan Anda:</strong> {recipe.notes.slice(0, 100)}
                           {recipe.notes.length > 100 && '...'}
                         </div>
                       )}
@@ -260,9 +260,9 @@ const Favorites: React.FC = () => {
               /* No Results */
               <div className="text-center py-12">
                 <Search className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">No recipes match your filters</h3>
+                <h3 className="text-xl font-semibold mb-2">Tidak ada resep yang sesuai dengan filter Anda</h3>
                 <p className="text-muted-foreground mb-4">
-                  Try adjusting your search or filter criteria
+                  Coba sesuaikan kriteria pencarian atau filter Anda
                 </p>
                 <Button
                   onClick={() => {
@@ -270,7 +270,7 @@ const Favorites: React.FC = () => {
                     setFilterByRating('all');
                   }}
                 >
-                  Clear Filters
+                  Hapus Filter
                 </Button>
               </div>
             )}

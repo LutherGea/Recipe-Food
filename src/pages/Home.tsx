@@ -30,8 +30,8 @@ const Home: React.FC = () => {
       // Use dummy data as fallback
       setRecipes(dummyRecipes.results.slice(0, 8));
       toast({
-        title: "Using Demo Data",
-        description: "API temporarily unavailable, showing sample recipes"
+        title: "Menggunakan Data Demo",
+        description: "API sementara tidak tersedia, menampilkan resep contoh"
       });
     } finally {
       setLoading(false);
@@ -58,8 +58,8 @@ const Home: React.FC = () => {
       const response = await searchRecipes(query, diet, type, 12);
       setRecipes(response.results);
       toast({
-        title: "Search Complete",
-        description: `Found ${response.totalResults} recipes`
+        title: "Pencarian Selesai",
+        description: `Ditemukan ${response.totalResults} resep`
       });
     } catch (error) {
       console.warn('Search failed, using dummy data:', error);
@@ -69,8 +69,8 @@ const Home: React.FC = () => {
       );
       setRecipes(filtered.length > 0 ? filtered : dummyRecipes.results);
       toast({
-        title: "Demo Search",
-        description: "Using sample data for demonstration"
+        title: "Pencarian Demo",
+        description: "Menggunakan data contoh untuk demonstrasi"
       });
     } finally {
       setSearchLoading(false);
@@ -90,24 +90,24 @@ const Home: React.FC = () => {
               </div>
             </div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Discover Amazing{' '}
+              Temukan Resep{' '}
               <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
-                Recipes
+                Menakjubkan
               </span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-white/90">
-              Find the perfect recipe for any occasion. From quick weeknight dinners to special celebrations.
+              Temukan resep yang sempurna untuk setiap kesempatan. Dari makan malam cepat hingga perayaan spesial.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/search">
                 <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-lg">
                   <Sparkles className="mr-2 h-5 w-5" />
-                  Explore Recipes
+                  Jelajahi Resep
                 </Button>
               </Link>
               <Link to="/categories">
                 <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                  Browse Categories
+                  Telusuri Kategori
                 </Button>
               </Link>
             </div>
@@ -121,7 +121,7 @@ const Home: React.FC = () => {
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-8">
               <span className="bg-gradient-warm bg-clip-text text-transparent">
-                Find Your Perfect Recipe
+                Temukan Resep Sempurna Anda
               </span>
             </h2>
             <SearchBar onSearch={handleSearch} loading={searchLoading} />
@@ -134,10 +134,10 @@ const Home: React.FC = () => {
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold mb-2">
                 <span className="bg-gradient-fresh bg-clip-text text-transparent">
-                  Recipe of the Day
+                  Resep Hari Ini
                 </span>
               </h2>
-              <p className="text-muted-foreground">Discover something new and delicious</p>
+              <p className="text-muted-foreground">Temukan sesuatu yang baru dan lezat</p>
             </div>
             
             <Card className="max-w-4xl mx-auto bg-gradient-card border-border/50 shadow-card overflow-hidden">
@@ -156,7 +156,7 @@ const Home: React.FC = () => {
                     <div className="absolute top-4 left-4">
                       <div className="bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-sm font-medium flex items-center">
                         <Sparkles className="h-4 w-4 mr-1" />
-                        Featured
+                        Unggulan
                       </div>
                     </div>
                   </div>
@@ -171,13 +171,13 @@ const Home: React.FC = () => {
                       {randomRecipe.readyInMinutes && (
                         <div className="flex items-center">
                           <Clock className="h-4 w-4 mr-1" />
-                          {randomRecipe.readyInMinutes} mins
+                          {randomRecipe.readyInMinutes} menit
                         </div>
                       )}
                     </div>
                     <Link to={`/recipe/${randomRecipe.id}`}>
                       <Button size="lg" className="bg-gradient-fresh hover:opacity-90">
-                        Try This Recipe
+                        Coba Resep Ini
                       </Button>
                     </Link>
                   </div>
@@ -194,14 +194,14 @@ const Home: React.FC = () => {
               <h2 className="text-3xl font-bold mb-2">
                 <span className="bg-gradient-warm bg-clip-text text-transparent flex items-center">
                   <TrendingUp className="mr-2 h-8 w-8 text-primary" />
-                  Featured Recipes
+                  Resep Unggulan
                 </span>
               </h2>
-              <p className="text-muted-foreground">Popular recipes from our community</p>
+              <p className="text-muted-foreground">Resep populer dari komunitas kami</p>
             </div>
             <Link to="/search">
               <Button variant="outline">
-                View All Recipes
+                Lihat Semua Resep
               </Button>
             </Link>
           </div>
@@ -227,10 +227,10 @@ const Home: React.FC = () => {
           {recipes.length === 0 && !loading && (
             <div className="text-center py-12">
               <ChefHat className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">No recipes found</h3>
-              <p className="text-muted-foreground mb-4">Try adjusting your search criteria</p>
+              <h3 className="text-xl font-semibold mb-2">Tidak ada resep ditemukan</h3>
+              <p className="text-muted-foreground mb-4">Coba sesuaikan kriteria pencarian Anda</p>
               <Button onClick={() => handleSearch('')}>
-                Load Default Recipes
+                Muat Resep Default
               </Button>
             </div>
           )}

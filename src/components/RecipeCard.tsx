@@ -24,8 +24,8 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
     
     if (!isAuthenticated) {
       toast({
-        title: "Login Required",
-        description: "Please login to add recipes to favorites",
+        title: "Perlu Login",
+        description: "Silakan login untuk menambahkan resep ke favorit",
         variant: "destructive"
       });
       return;
@@ -34,14 +34,14 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
     if (favorite) {
       removeFromFavorites(recipe.id);
       toast({
-        title: "Removed from favorites",
-        description: `${recipe.title} has been removed from your favorites`
+        title: "Dihapus dari favorit",
+        description: `${recipe.title} telah dihapus dari favorit Anda`
       });
     } else {
       addToFavorites(recipe);
       toast({
-        title: "Added to favorites",
-        description: `${recipe.title} has been added to your favorites`
+        title: "Ditambahkan ke favorit",
+        description: `${recipe.title} telah ditambahkan ke favorit Anda`
       });
     }
   };
@@ -106,13 +106,13 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
             {recipe.readyInMinutes && (
               <div className="flex items-center space-x-1">
                 <Clock className="h-4 w-4" />
-                <span>{recipe.readyInMinutes}m</span>
+                <span>{recipe.readyInMinutes} menit</span>
               </div>
             )}
             {recipe.servings && (
               <div className="flex items-center space-x-1">
                 <Users className="h-4 w-4" />
-                <span>{recipe.servings}</span>
+                <span>{recipe.servings} porsi</span>
               </div>
             )}
           </div>
@@ -122,7 +122,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
       <CardFooter className="p-4 pt-0">
         <Link to={`/recipe/${recipe.id}`} className="w-full">
           <Button className="w-full bg-gradient-warm hover:opacity-90 transition-opacity">
-            View Recipe
+            Lihat Resep
           </Button>
         </Link>
       </CardFooter>

@@ -20,25 +20,25 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, loading = false }) => {
   };
 
   const dietOptions = [
-    { value: 'all', label: 'All Diets' },
+    { value: 'all', label: 'Semua Diet' },
     { value: 'vegetarian', label: 'Vegetarian' },
     { value: 'vegan', label: 'Vegan' },
-    { value: 'gluten-free', label: 'Gluten Free' },
+    { value: 'gluten-free', label: 'Bebas Gluten' },
     { value: 'ketogenic', label: 'Keto' },
     { value: 'paleo', label: 'Paleo' },
     { value: 'whole30', label: 'Whole30' }
   ];
 
   const typeOptions = [
-    { value: 'all', label: 'All Types' },
-    { value: 'main course', label: 'Main Course' },
-    { value: 'breakfast', label: 'Breakfast' },
-    { value: 'lunch', label: 'Lunch' },
-    { value: 'dinner', label: 'Dinner' },
-    { value: 'dessert', label: 'Dessert' },
-    { value: 'appetizer', label: 'Appetizer' },
-    { value: 'snack', label: 'Snack' },
-    { value: 'drink', label: 'Drink' }
+    { value: 'all', label: 'Semua Jenis' },
+    { value: 'main course', label: 'Hidangan Utama' },
+    { value: 'breakfast', label: 'Sarapan' },
+    { value: 'lunch', label: 'Makan Siang' },
+    { value: 'dinner', label: 'Makan Malam' },
+    { value: 'dessert', label: 'Pencuci Mulut' },
+    { value: 'appetizer', label: 'Pembuka' },
+    { value: 'snack', label: 'Camilan' },
+    { value: 'drink', label: 'Minuman' }
   ];
 
   return (
@@ -48,7 +48,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, loading = false }) => {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
           <Input
             type="text"
-            placeholder="Search for recipes... (e.g., pasta, chicken, vegetarian)"
+            placeholder="Cari resep... (contoh: pasta, ayam, vegetarian)"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="pl-10 h-12 text-base"
@@ -63,7 +63,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, loading = false }) => {
             </label>
             <Select value={diet} onValueChange={setDiet}>
               <SelectTrigger className="h-10">
-                <SelectValue placeholder="Select diet" />
+                <SelectValue placeholder="Pilih diet" />
               </SelectTrigger>
               <SelectContent>
                 {dietOptions.map((option) => (
@@ -76,10 +76,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, loading = false }) => {
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-foreground">Meal Type</label>
+            <label className="text-sm font-medium text-foreground">Jenis Makanan</label>
             <Select value={type} onValueChange={setType}>
               <SelectTrigger className="h-10">
-                <SelectValue placeholder="Select type" />
+                <SelectValue placeholder="Pilih jenis" />
               </SelectTrigger>
               <SelectContent>
                 {typeOptions.map((option) => (
@@ -92,13 +92,13 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, loading = false }) => {
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-foreground opacity-0">Search</label>
+            <label className="text-sm font-medium text-foreground opacity-0">Cari</label>
             <Button 
               type="submit" 
               className="w-full h-10 bg-gradient-warm hover:opacity-90"
               disabled={loading}
             >
-              {loading ? 'Searching...' : 'Search Recipes'}
+              {loading ? 'Mencari...' : 'Cari Resep'}
             </Button>
           </div>
         </div>
@@ -106,7 +106,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, loading = false }) => {
         {(query || (diet && diet !== 'all') || (type && type !== 'all')) && (
           <div className="flex items-center justify-between text-sm text-muted-foreground">
             <span>
-              Filters active: {[
+              Filter aktif: {[
                 query && `"${query}"`,
                 diet && diet !== 'all' && dietOptions.find(d => d.value === diet)?.label,
                 type && type !== 'all' && typeOptions.find(t => t.value === type)?.label
@@ -123,7 +123,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch, loading = false }) => {
                 onSearch('');
               }}
             >
-              Clear All
+              Hapus Semua
             </Button>
           </div>
         )}

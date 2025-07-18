@@ -12,13 +12,13 @@ const Navbar: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   const navLinks = [
-    { path: '/', label: 'Home', icon: Home },
-    { path: '/categories', label: 'Categories', icon: Grid3X3 },
-    { path: '/search', label: 'Search', icon: Search },
+    { path: '/', label: 'Beranda', icon: Home },
+    { path: '/categories', label: 'Kategori', icon: Grid3X3 },
+    { path: '/search', label: 'Pencarian', icon: Search },
   ];
 
   const protectedLinks = [
-    { path: '/favorites', label: 'Favorites', icon: Heart },
+    { path: '/favorites', label: 'Favorit', icon: Heart },
   ];
 
   return (
@@ -70,7 +70,7 @@ const Navbar: React.FC = () => {
             {isAuthenticated ? (
               <div className="flex items-center space-x-2">
                 <span className="text-sm text-muted-foreground hidden sm:block">
-                  Hello, {user?.username}!
+                  Halo, {user?.username}!
                 </span>
                 <Button
                   variant="outline"
@@ -79,14 +79,14 @@ const Navbar: React.FC = () => {
                   className="flex items-center space-x-2"
                 >
                   <LogOut className="h-4 w-4" />
-                  <span className="hidden sm:block">Logout</span>
+                  <span className="hidden sm:block">Keluar</span>
                 </Button>
               </div>
             ) : (
               <Link to="/login">
                 <Button size="sm" className="flex items-center space-x-2">
                   <User className="h-4 w-4" />
-                  <span>Login</span>
+                  <span>Masuk</span>
                 </Button>
               </Link>
             )}

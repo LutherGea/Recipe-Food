@@ -27,8 +27,8 @@ const Login: React.FC = () => {
     
     if (!username || !password) {
       toast({
-        title: "Invalid Input",
-        description: "Please enter both username and password",
+        title: "Input Tidak Valid",
+        description: "Silakan masukkan username dan password",
         variant: "destructive"
       });
       return;
@@ -41,21 +41,21 @@ const Login: React.FC = () => {
       
       if (success) {
         toast({
-          title: "Login Successful",
-          description: `Welcome back, ${username}!`
+          title: "Login Berhasil",
+          description: `Selamat datang kembali, ${username}!`
         });
         navigate('/');
       } else {
         toast({
-          title: "Login Failed",
-          description: "Invalid username or password",
+          title: "Login Gagal",
+          description: "Username atau password salah",
           variant: "destructive"
         });
       }
     } catch (error) {
       toast({
-        title: "Login Error",
-        description: "An error occurred during login",
+        title: "Error Login",
+        description: "Terjadi kesalahan saat login",
         variant: "destructive"
       });
     } finally {
@@ -96,19 +96,19 @@ const Login: React.FC = () => {
         {/* Login Card */}
         <Card className="bg-white/95 backdrop-blur-sm border-0 shadow-2xl">
           <CardHeader className="text-center pb-2">
-            <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>
-            <p className="text-muted-foreground">Sign in to access your recipes</p>
+            <CardTitle className="text-2xl font-bold">Selamat Datang Kembali</CardTitle>
+            <p className="text-muted-foreground">Masuk untuk mengakses resep Anda</p>
           </CardHeader>
           
           <CardContent className="space-y-6">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium">Username</label>
+                <label className="text-sm font-medium">Nama Pengguna</label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                   <Input
                     type="text"
-                    placeholder="Enter your username"
+                    placeholder="Masukkan nama pengguna Anda"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     className="pl-10"
@@ -118,12 +118,12 @@ const Login: React.FC = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Password</label>
+                <label className="text-sm font-medium">Kata Sandi</label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                   <Input
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="Enter your password"
+                    placeholder="Masukkan kata sandi Anda"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="pl-10 pr-10"
@@ -144,14 +144,14 @@ const Login: React.FC = () => {
                 className="w-full bg-gradient-warm hover:opacity-90" 
                 disabled={loading}
               >
-                {loading ? 'Signing in...' : 'Sign In'}
+                {loading ? 'Masuk...' : 'Masuk'}
               </Button>
             </form>
 
             {/* Demo Credentials */}
             <div className="border-t pt-4">
               <p className="text-sm text-muted-foreground text-center mb-3">
-                Demo Accounts (Click to use):
+                Akun Demo (Klik untuk menggunakan):
               </p>
               <div className="space-y-2">
                 {demoCredentials.map((creds, index) => (
@@ -172,15 +172,15 @@ const Login: React.FC = () => {
 
             {/* Additional Info */}
             <div className="text-center text-xs text-muted-foreground">
-              <p>This is a demo application.</p>
-              <p>Use any of the credentials above to login.</p>
+              <p>Ini adalah aplikasi demo.</p>
+              <p>Gunakan salah satu kredensial di atas untuk login.</p>
             </div>
 
             {/* Back to Home */}
             <div className="text-center">
               <Link to="/">
                 <Button variant="ghost" size="sm">
-                  Back to Home
+                  Kembali ke Beranda
                 </Button>
               </Link>
             </div>
@@ -189,9 +189,9 @@ const Login: React.FC = () => {
 
         {/* Features Info */}
         <div className="mt-6 text-center text-white/80 text-sm">
-          <p>🔐 Login to access favorites and personal notes</p>
-          <p>⭐ Rate recipes and save custom notes</p>
-          <p>❤️ Build your personal recipe collection</p>
+          <p>🔐 Login untuk mengakses favorit dan catatan pribadi</p>
+          <p>⭐ Beri rating resep dan simpan catatan khusus</p>
+          <p>❤️ Bangun koleksi resep pribadi Anda</p>
         </div>
       </div>
     </div>

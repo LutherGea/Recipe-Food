@@ -32,7 +32,7 @@ const categories: Category[] = [
   {
     id: 'vegetarian',
     name: 'Vegetarian',
-    description: 'Plant-based recipes without meat',
+    description: 'Resep nabati tanpa daging',
     icon: Leaf,
     diet: 'vegetarian',
     color: 'text-green-600',
@@ -41,7 +41,7 @@ const categories: Category[] = [
   {
     id: 'vegan',
     name: 'Vegan',
-    description: 'Completely plant-based recipes',
+    description: 'Resep sepenuhnya dari tumbuhan',
     icon: Apple,
     diet: 'vegan',
     color: 'text-emerald-600',
@@ -49,8 +49,8 @@ const categories: Category[] = [
   },
   {
     id: 'breakfast',
-    name: 'Breakfast',
-    description: 'Start your day with these recipes',
+    name: 'Sarapan',
+    description: 'Mulai hari dengan resep-resep ini',
     icon: Coffee,
     type: 'breakfast',
     color: 'text-amber-600',
@@ -58,8 +58,8 @@ const categories: Category[] = [
   },
   {
     id: 'lunch',
-    name: 'Lunch',
-    description: 'Perfect midday meals',
+    name: 'Makan Siang',
+    description: 'Hidangan sempurna untuk siang hari',
     icon: Utensils,
     type: 'lunch',
     color: 'text-blue-600',
@@ -67,8 +67,8 @@ const categories: Category[] = [
   },
   {
     id: 'dinner',
-    name: 'Dinner',
-    description: 'Hearty evening meals',
+    name: 'Makan Malam',
+    description: 'Hidangan hangat untuk malam hari',
     icon: Moon,
     type: 'dinner',
     color: 'text-purple-600',
@@ -76,8 +76,8 @@ const categories: Category[] = [
   },
   {
     id: 'dessert',
-    name: 'Desserts',
-    description: 'Sweet treats and desserts',
+    name: 'Pencuci Mulut',
+    description: 'Makanan manis dan dessert',
     icon: Cake,
     type: 'dessert',
     color: 'text-pink-600',
@@ -86,7 +86,7 @@ const categories: Category[] = [
   {
     id: 'keto',
     name: 'Keto',
-    description: 'Low-carb ketogenic recipes',
+    description: 'Resep ketogenik rendah karbohidrat',
     icon: Utensils,
     diet: 'ketogenic',
     color: 'text-red-600',
@@ -94,8 +94,8 @@ const categories: Category[] = [
   },
   {
     id: 'gluten-free',
-    name: 'Gluten Free',
-    description: 'Recipes without gluten',
+    name: 'Bebas Gluten',
+    description: 'Resep tanpa gluten',
     icon: Leaf,
     diet: 'gluten free',
     color: 'text-teal-600',
@@ -187,7 +187,7 @@ const Categories: React.FC = () => {
                         {category.description}
                       </p>
                       <div className="flex items-center justify-center text-primary group-hover:text-primary-glow transition-colors">
-                        <span className="text-sm font-medium">Explore Recipes</span>
+                        <span className="text-sm font-medium">Jelajahi Resep</span>
                         <ChevronRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
@@ -206,7 +206,7 @@ const Categories: React.FC = () => {
                   <selectedCategory.icon className="h-8 w-8 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-3xl font-bold">{selectedCategory.name} Recipes</h2>
+                  <h2 className="text-3xl font-bold">{selectedCategory.name} Resep</h2>
                   <p className="text-muted-foreground">{selectedCategory.description}</p>
                 </div>
               </div>
@@ -217,7 +217,7 @@ const Categories: React.FC = () => {
                   setRecipes([]);
                 }}
               >
-                Back to Categories
+                Kembali ke Kategori
               </Button>
             </div>
 
@@ -253,11 +253,11 @@ const Categories: React.FC = () => {
                 </p>
                 <div className="flex gap-4 justify-center">
                   <Button onClick={() => setSelectedCategory(null)}>
-                    Browse Categories
+                    Telusuri Kategori
                   </Button>
                   <Link to="/search">
                     <Button variant="outline">
-                      Search Recipes
+                      Cari Resep
                     </Button>
                   </Link>
                 </div>
@@ -269,7 +269,7 @@ const Categories: React.FC = () => {
               <div className="text-center mt-12">
                 <Link to={`/search?${selectedCategory.diet ? `diet=${selectedCategory.diet}` : `type=${selectedCategory.type}`}`}>
                   <Button size="lg" variant="outline">
-                    View All {selectedCategory.name} Recipes
+                    Lihat Semua Resep {selectedCategory.name}
                   </Button>
                 </Link>
               </div>
@@ -280,19 +280,19 @@ const Categories: React.FC = () => {
         {/* Quick Actions */}
         {!selectedCategory && (
           <div className="mt-16 text-center">
-            <h3 className="text-2xl font-semibold mb-6">Quick Actions</h3>
+            <h3 className="text-2xl font-semibold mb-6">Aksi Cepat</h3>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link to="/search?diet=vegetarian">
-                <Button variant="outline">Browse Vegetarian</Button>
+                <Button variant="outline">Telusuri Vegetarian</Button>
               </Link>
               <Link to="/search?type=breakfast">
-                <Button variant="outline">Breakfast Ideas</Button>
+                <Button variant="outline">Ide Sarapan</Button>
               </Link>
               <Link to="/search?diet=gluten-free">
-                <Button variant="outline">Gluten-Free Options</Button>
+                <Button variant="outline">Opsi Bebas Gluten</Button>
               </Link>
               <Link to="/search">
-                <Button>Search All Recipes</Button>
+                <Button>Cari Semua Resep</Button>
               </Link>
             </div>
           </div>
