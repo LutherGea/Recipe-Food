@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { FavoritesProvider } from "@/contexts/FavoritesContext";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import Navbar from "@/components/Navbar";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
@@ -18,12 +19,13 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <FavoritesProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
+    <ThemeProvider defaultTheme="system" storageKey="recipe-app-theme">
+      <AuthProvider>
+        <FavoritesProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
             <div className="min-h-screen bg-background">
               <Navbar />
               <Routes>
@@ -40,6 +42,7 @@ const App = () => (
         </TooltipProvider>
       </FavoritesProvider>
     </AuthProvider>
+  </ThemeProvider>
   </QueryClientProvider>
 );
 

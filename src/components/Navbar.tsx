@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { ChefHat, Home, Grid3X3, Heart, User, LogOut, Search } from 'lucide-react';
 
 const Navbar: React.FC = () => {
@@ -65,6 +66,7 @@ const Navbar: React.FC = () => {
 
           {/* User Menu */}
           <div className="flex items-center space-x-2">
+            <ThemeToggle />
             {isAuthenticated ? (
               <div className="flex items-center space-x-2">
                 <span className="text-sm text-muted-foreground hidden sm:block">
