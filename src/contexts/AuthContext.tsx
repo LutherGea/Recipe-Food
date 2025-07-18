@@ -31,7 +31,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   // Hardcoded credentials for demo
   const validCredentials = [
-    { username: 'Alam', password: '123456789', id: '1' },
+    { username: 'Luther', password: '123456789', id: '1' },
     { username: 'user', password: 'user123', id: '2' },
     { username: 'demo', password: 'demo123', id: '3' }
   ];

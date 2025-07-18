@@ -64,7 +64,7 @@ const Login: React.FC = () => {
   };
 
   const demoCredentials = [
-    { username: 'Alam', password: '123456789' },
+    { username: 'Luther', password: '123456789' },
     { username: 'user', password: 'user123' },
     { username: 'demo', password: 'demo123' }
   ];
