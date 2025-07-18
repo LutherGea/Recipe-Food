@@ -81,4 +81,4 @@
     4. Buka di browser (Chrome/Microsoft Edge) dengan alamat sesuai dengan localhost yanbg tertera
 
 6. Link live demo aplikasi
-   https://recipe-food-gilt.vercel.app/
+   https://recipe-food-lc8f.vercel.app/
